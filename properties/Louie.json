@@ -6,7 +6,7 @@
  "passive": true,
  "appears_in_hotel": false,
  "appears_in_mines": true,
- "can_be_crucified": false,
+ "can_be_crucified": true,
  "insta_kills": false,
  "damages": false,
  "glitched": false,
