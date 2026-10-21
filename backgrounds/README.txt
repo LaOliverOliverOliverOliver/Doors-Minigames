@@ -1,0 +1,1 @@
+Put an image here named background.png (or .jpg/.jpeg/.webp/.gif), or bg.*, or 1.* to 5.*. If several exist, one is picked at random each load.
