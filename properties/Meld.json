@@ -1,7 +1,6 @@
 {
  "name": "Meld",
  "image": "images/Meld.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

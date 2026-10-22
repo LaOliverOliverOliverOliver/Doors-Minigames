@@ -1,7 +1,6 @@
 {
  "name": "Scribbles",
  "image": "images/Scribbles.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

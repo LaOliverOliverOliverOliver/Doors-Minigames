@@ -1,12 +1,11 @@
 {
  "name": "Louie",
  "image": "images/Louie.png",
- "height": 0.5,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": false,
  "appears_in_mines": true,
- "can_be_crucified": true,
+ "can_be_crucified": false,
  "insta_kills": false,
  "damages": false,
  "glitched": false,

@@ -1,7 +1,6 @@
 {
  "name": "Hide",
  "image": "images/Hide.png",
- "height": 2.2,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

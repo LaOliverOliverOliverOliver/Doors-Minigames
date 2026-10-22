@@ -1,7 +1,6 @@
 {
  "name": "Caw",
  "image": "images/Caw.png",
- "height": 1.8,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": false,

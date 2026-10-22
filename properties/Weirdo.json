@@ -1,7 +1,6 @@
 {
  "name": "Weirdo",
  "image": "images/Weirdo.png",
- "height": null,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": true,

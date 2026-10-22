@@ -1,7 +1,6 @@
 {
  "name": "Haste",
  "image": "images/Haste.png",
- "height": 2.8,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

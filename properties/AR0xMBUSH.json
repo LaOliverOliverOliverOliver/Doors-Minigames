@@ -1,7 +1,6 @@
 {
  "name": "AR0xMBUSH",
  "image": "images/AR0xMBUSH.png",
- "height": 2.5,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

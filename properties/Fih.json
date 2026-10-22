@@ -1,8 +1,6 @@
 {
  "name": "Fih",
  "image": "images/Fih.png",
- "height": null,
- "height_note": "fish normal height",
  "hostile": false,
  "passive": true,
  "appears_in_hotel": false,

@@ -1,7 +1,6 @@
 {
  "name": "Dupe",
  "image": "images/Dupe.png",
- "height": 2.8,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

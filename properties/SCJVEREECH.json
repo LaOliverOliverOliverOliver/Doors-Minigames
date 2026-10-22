@@ -1,7 +1,6 @@
 {
  "name": "SCJVEREECH",
  "image": "images/SCJVEREECH.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

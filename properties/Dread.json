@@ -1,7 +1,6 @@
 {
  "name": "Dread",
  "image": "images/Dread.png",
- "height": 2.9,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

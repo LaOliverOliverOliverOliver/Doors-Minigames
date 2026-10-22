@@ -1,7 +1,6 @@
 {
  "name": "Forget-Me-Not",
  "image": "images/Forget-Me-Not.png",
- "height": null,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": false,

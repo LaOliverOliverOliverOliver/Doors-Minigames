@@ -1,7 +1,6 @@
 {
  "name": "Moonlight",
  "image": "images/Moonlight.png",
- "height": null,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": true,

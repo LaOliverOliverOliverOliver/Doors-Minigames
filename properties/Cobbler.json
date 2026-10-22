@@ -1,7 +1,6 @@
 {
  "name": "Cobbler",
  "image": "images/Cobbler.png",
- "height": 2.2,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": false,

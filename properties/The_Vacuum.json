@@ -1,7 +1,6 @@
 {
  "name": "The Vacuum",
  "image": "images/The_Vacuum.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

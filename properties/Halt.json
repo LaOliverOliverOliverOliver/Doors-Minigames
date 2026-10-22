@@ -1,7 +1,6 @@
 {
  "name": "Halt",
  "image": "images/Halt.png",
- "height": 2.0,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

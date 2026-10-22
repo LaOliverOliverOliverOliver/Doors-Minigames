@@ -1,7 +1,6 @@
 {
  "name": "Blitz",
  "image": "images/Blitz.png",
- "height": 2.6,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

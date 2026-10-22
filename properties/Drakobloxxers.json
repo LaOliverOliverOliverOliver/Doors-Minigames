@@ -1,7 +1,6 @@
 {
  "name": "Drakobloxxers",
  "image": "images/Drakobloxxers.png",
- "height": 3.8,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

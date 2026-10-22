@@ -1,7 +1,6 @@
 {
  "name": "Starlight",
  "image": "images/Starlight.png",
- "height": null,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": true,

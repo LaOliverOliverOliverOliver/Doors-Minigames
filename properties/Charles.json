@@ -1,8 +1,6 @@
 {
  "name": "Charles",
  "image": "images/Charles.png",
- "height": null,
- "height_note": "240px",
  "hostile": false,
  "passive": false,
  "appears_in_hotel": false,

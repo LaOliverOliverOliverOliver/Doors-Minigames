@@ -1,7 +1,6 @@
 {
  "name": "Surge",
  "image": "images/Surge.png",
- "height": 2.7,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

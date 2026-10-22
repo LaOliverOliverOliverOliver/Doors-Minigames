@@ -1,7 +1,6 @@
 {
  "name": "Stem",
  "image": "images/Stem.png",
- "height": 3.1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

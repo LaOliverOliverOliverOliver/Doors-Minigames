@@ -1,7 +1,6 @@
 {
  "name": "Giggle",
  "image": "images/Giggle.png",
- "height": 0.6,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

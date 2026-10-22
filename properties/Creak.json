@@ -1,7 +1,6 @@
 {
  "name": "Creak",
  "image": "images/Creak.png",
- "height": 2.7,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

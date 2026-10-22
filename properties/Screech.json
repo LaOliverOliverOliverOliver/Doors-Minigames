@@ -1,7 +1,6 @@
 {
  "name": "Screech",
  "image": "images/Screech.png",
- "height": 0.4,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

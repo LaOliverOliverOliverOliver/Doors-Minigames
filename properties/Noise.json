@@ -1,7 +1,6 @@
 {
  "name": "Noise",
  "image": "images/Noise.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

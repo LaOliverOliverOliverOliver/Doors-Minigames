@@ -1,7 +1,6 @@
 {
  "name": "Snare",
  "image": "images/Snare.png",
- "height": 0.3,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

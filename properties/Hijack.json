@@ -1,7 +1,6 @@
 {
  "name": "Hijack",
  "image": "images/Hijack.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

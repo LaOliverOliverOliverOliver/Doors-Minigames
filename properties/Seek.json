@@ -1,7 +1,6 @@
 {
  "name": "Seek",
  "image": "images/Seek.png",
- "height": 1.9,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

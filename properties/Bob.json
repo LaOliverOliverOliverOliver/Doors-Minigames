@@ -1,7 +1,6 @@
 {
  "name": "Bob",
  "image": "images/Bob.png",
- "height": 1.6,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": true,

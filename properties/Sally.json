@@ -1,7 +1,6 @@
 {
  "name": "Sally",
  "image": "images/Sally.png",
- "height": 0.5,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": true,

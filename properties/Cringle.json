@@ -1,7 +1,6 @@
 {
  "name": "Cringle",
  "image": "images/Cringle.png",
- "height": 1.5,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": false,

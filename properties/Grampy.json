@@ -1,7 +1,6 @@
 {
  "name": "Grampy",
  "image": "images/Grampy.png",
- "height": 1.0,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": false,

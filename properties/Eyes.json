@@ -1,7 +1,6 @@
 {
  "name": "Eyes",
  "image": "images/Eyes.png",
- "height": 1.1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

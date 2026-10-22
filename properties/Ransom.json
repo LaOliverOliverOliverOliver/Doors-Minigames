@@ -1,7 +1,6 @@
 {
  "name": "Ransom",
  "image": "images/Ransom.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

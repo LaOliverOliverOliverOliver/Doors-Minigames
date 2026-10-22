@@ -1,7 +1,6 @@
 {
  "name": "Teller",
  "image": "images/Teller.png",
- "height": 1.7,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

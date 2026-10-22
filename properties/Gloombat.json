@@ -1,7 +1,6 @@
 {
  "name": "Gloombat",
  "image": "images/Gloombat.png",
- "height": 0.5,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

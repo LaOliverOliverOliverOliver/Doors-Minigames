@@ -1,7 +1,6 @@
 {
  "name": "Ambush",
  "image": "images/Ambush.png",
- "height": 2.3,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

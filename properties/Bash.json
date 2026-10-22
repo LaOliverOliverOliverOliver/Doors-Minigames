@@ -1,7 +1,6 @@
 {
  "name": "Bash",
  "image": "images/Bash.png",
- "height": 2.0,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

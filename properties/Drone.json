@@ -1,7 +1,6 @@
 {
  "name": "Drone",
  "image": "images/Drone.png",
- "height": 1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

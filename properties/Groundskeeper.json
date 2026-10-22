@@ -1,7 +1,6 @@
 {
  "name": "Groundskeeper",
  "image": "images/Groundskeeper.png",
- "height": 2.1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

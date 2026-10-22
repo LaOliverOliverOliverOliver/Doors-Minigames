@@ -1,7 +1,6 @@
 {
  "name": "Bramble",
  "image": "images/Bramble.png",
- "height": 3.6,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

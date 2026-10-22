@@ -1,7 +1,6 @@
 {
  "name": "A-90",
  "image": "images/A-90.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

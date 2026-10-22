@@ -1,7 +1,6 @@
 {
  "name": "Figure",
  "image": "images/Figure.png",
- "height": 3.2,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

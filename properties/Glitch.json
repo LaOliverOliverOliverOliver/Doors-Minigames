@@ -1,7 +1,6 @@
 {
  "name": "Glitch",
  "image": "images/Glitch.png",
- "height": 1.4,
  "hostile": false,
  "passive": true,
  "appears_in_hotel": true,

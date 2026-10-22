@@ -1,7 +1,6 @@
 {
  "name": "A-120",
  "image": "images/A-120.png",
- "height": 2.4,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

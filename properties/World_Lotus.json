@@ -1,7 +1,6 @@
 {
  "name": "World Lotus",
  "image": "images/World_Lotus.png",
- "height": 25,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": false,

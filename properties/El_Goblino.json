@@ -1,7 +1,6 @@
 {
  "name": "El Goblino",
  "image": "images/El_Goblino.png",
- "height": 1.3,
  "hostile": false,
  "passive": false,
  "appears_in_hotel": true,

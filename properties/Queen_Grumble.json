@@ -1,7 +1,6 @@
 {
  "name": "Queen Grumble",
  "image": "images/Queen_Grumble.png",
- "height": 5.8,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

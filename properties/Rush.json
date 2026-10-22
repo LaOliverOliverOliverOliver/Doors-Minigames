@@ -1,7 +1,6 @@
 {
  "name": "Rush",
  "image": "images/Rush.png",
- "height": 2.6,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

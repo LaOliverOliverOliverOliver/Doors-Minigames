@@ -1,7 +1,6 @@
 {
  "name": "Honcho",
  "image": "images/Honcho.png",
- "height": 2.3,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

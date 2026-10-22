@@ -1,7 +1,6 @@
 {
  "name": "Jeff the Killer",
  "image": "images/Jeff_the_Killer.png",
- "height": 1.8,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

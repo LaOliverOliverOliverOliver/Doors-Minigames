@@ -1,7 +1,6 @@
 {
  "name": "Eyestalk",
  "image": "images/Eyestalk.png",
- "height": 3.1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

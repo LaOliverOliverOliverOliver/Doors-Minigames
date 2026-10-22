@@ -1,7 +1,6 @@
 {
  "name": "Monument",
  "image": "images/Monument.png",
- "height": 5.2,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,

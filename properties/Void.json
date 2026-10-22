@@ -1,7 +1,6 @@
 {
  "name": "Void",
  "image": "images/Void.png",
- "height": null,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

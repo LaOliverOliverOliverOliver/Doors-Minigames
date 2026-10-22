@@ -1,7 +1,6 @@
 {
  "name": "Timothy",
  "image": "images/Timothy.png",
- "height": 0.1,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": true,

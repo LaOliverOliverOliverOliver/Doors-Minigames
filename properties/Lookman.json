@@ -1,7 +1,6 @@
 {
  "name": "Lookman",
  "image": "images/Lookman.png",
- "height": 1.6,
  "hostile": true,
  "passive": false,
  "appears_in_hotel": false,
