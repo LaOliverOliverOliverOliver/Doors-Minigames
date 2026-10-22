@@ -2,7 +2,8 @@
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="stylesheet" href="style.css">
 <script src="heights.js"></script>
-<script src="config.js"></script></head><body><div id="bg"></div>
+<script src="config.js"></script>
+<script src="categories.js"></script></head><body><div id="bg"></div>
 <div class="wrap" id="wrap"><h1>DOORS: Minigames</h1><p class="sub">Pick a minigame below.</p><div id="note" class="note" hidden></div>
 <div class="tabs"><button class="b" id="tg" onclick="mode('g')">Groups</button><button class="b ghost" id="tv" onclick="mode('v')">Venn diagram</button><button class="b ghost" id="ts" onclick="mode('s')">Size up</button></div>
 <div id="gmode"><div class="bar"><div class="pill">Difficulty <select id="df" onchange="nw()"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="any" selected>Any</option></select></div><div class="pill">Grid <select id="sz" onchange="nw()"><option value="3">3x3</option><option value="4" selected>4x4</option><option value="5">5x5</option><option value="6">6x6</option></select></div>
@@ -35,9 +36,9 @@ const BUNDLE=[{"name": "Rush", "image": "images/Rush.png", "hostile": true, "pas
 let P={},N=[],IMG={},CATLIST=[],AV=true,AR=true;
 const ents=()=>N.filter(n=>(AV||!P[n].appears_in_visions)&&(AR||!P[n].reskins));
 const IMGP=n=>IMG[n]||`images/${F(n)}.png`;
-function ingest(list){P={};IMG={};const cs=new Set();
- list.forEach(o=>{if(!o||!o.name)return;const p={};for(const k in o)if(typeof o[k]=="boolean"){p[k]=o[k];cs.add(k)}P[o.name]=p;if(o.image)IMG[o.name]=o.image});
- CATLIST=[...cs];N=Object.keys(P);N.forEach(n=>CATLIST.forEach(c=>{P[n][c]=!!P[n][c]}))}
+function ingest(list){P={};IMG={};CATLIST=CATS_.map(c=>c.key);
+ list.forEach(o=>{if(!o||!o.name)return;const p={};CATLIST.forEach(k=>p[k]=o[k]===true);P[o.name]=p;if(o.image)IMG[o.name]=o.image});
+ N=Object.keys(P)}
 async function loadLocal(){try{const r=await fetch("properties/",{cache:"no-store"});if(!r.ok)return null;
  const files=[...(await r.text()).matchAll(/href="([^"?#]+\.json)"/gi)].map(m=>decodeURIComponent(m[1]).split("/").pop());if(!files.length)return null;
  const L=await Promise.all([...new Set(files)].map(f=>fetch("properties/"+encodeURIComponent(f),{cache:"no-store"}).then(r=>r.json()).catch(()=>null)));
@@ -55,9 +56,11 @@ async function loadEntities(){return (await loadLocal())||(await loadGithub())}
 function setAllow(el){if(el.classList.contains("av"))AV=el.checked;else AR=el.checked;
  document.querySelectorAll(".av").forEach(x=>x.checked=AV);document.querySelectorAll(".ar").forEach(x=>x.checked=AR);V=null;SU=null;
  if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else suNew()}
-const TIER={"easy": ["hostile", "passive", "appears_in_hotel", "appears_in_mines", "can_be_crucified", "insta_kills", "damages", "glitched"], "medium": ["appears_in_backdoor", "appears_in_archives", "appears_in_outdoors", "appears_in_stairwell", "appears_in_visions", "cannot_be_crucified", "boss", "rush_variant", "speaks"], "hard": ["female", "item_associated", "main_antagonist_of_their_floor", "reskins"]};
+const CATS_=(typeof CATEGORIES!="undefined"&&CATEGORIES.length)?CATEGORIES:Object.keys(BUNDLE[0]).filter(k=>typeof BUNDLE[0][k]=="boolean").map(k=>({key:k}));
+const TIER={easy:[],medium:[],hard:[]};CATS_.forEach(c=>{if(TIER[c.difficulty])TIER[c.difficulty].push(c.key)});
+const LABEL=Object.fromEntries(CATS_.map(c=>[c.key,c.label||c.key.replace(/_/g," ")]));
 const COL=["#f2c14e","#7bc47f","#6ea8e6","#b58ae0","#ef9a5b","#5fc9c0"];
-const L=c=>c.replace(/_/g," ").replace(/main floors/,"the main floors");
+const L=c=>LABEL[c]||c.replace(/_/g," ");
 const F=n=>n.replace(/[^A-Za-z0-9-]+/g,"_").replace(/^_+|_+$/g,"");
 const comb=(a,k)=>k==0?[[]]:a.length<k?[]:[...comb(a.slice(1),k-1).map(x=>[a[0],...x]),...comb(a.slice(1),k)];
 let Z=4,cats,tiles=[],sel=[],found=[],lives=4,over=false,busy=false;
