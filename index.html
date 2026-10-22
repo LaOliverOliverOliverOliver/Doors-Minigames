@@ -1,7 +1,8 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOORS: Minigames</title>
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="stylesheet" href="style.css">
-<script src="heights.js"></script></head><body><div id="bg"></div>
+<script src="heights.js"></script>
+<script src="config.js"></script></head><body><div id="bg"></div>
 <div class="wrap" id="wrap"><h1>DOORS: Minigames</h1><p class="sub">Pick a minigame below.</p><div id="note" class="note" hidden></div>
 <div class="tabs"><button class="b" id="tg" onclick="mode('g')">Groups</button><button class="b ghost" id="tv" onclick="mode('v')">Venn diagram</button><button class="b ghost" id="ts" onclick="mode('s')">Size up</button></div>
 <div id="gmode"><div class="bar"><div class="pill">Difficulty <select id="df" onchange="nw()"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="any" selected>Any</option></select></div><div class="pill">Grid <select id="sz" onchange="nw()"><option value="3">3x3</option><option value="4" selected>4x4</option><option value="5">5x5</option><option value="6">6x6</option></select></div>
@@ -37,10 +38,20 @@ const IMGP=n=>IMG[n]||`images/${F(n)}.png`;
 function ingest(list){P={};IMG={};const cs=new Set();
  list.forEach(o=>{if(!o||!o.name)return;const p={};for(const k in o)if(typeof o[k]=="boolean"){p[k]=o[k];cs.add(k)}P[o.name]=p;if(o.image)IMG[o.name]=o.image});
  CATLIST=[...cs];N=Object.keys(P);N.forEach(n=>CATLIST.forEach(c=>{P[n][c]=!!P[n][c]}))}
-async function loadEntities(){try{const r=await fetch("properties/",{cache:"no-store"});if(!r.ok)return null;
+async function loadLocal(){try{const r=await fetch("properties/",{cache:"no-store"});if(!r.ok)return null;
  const files=[...(await r.text()).matchAll(/href="([^"?#]+\.json)"/gi)].map(m=>decodeURIComponent(m[1]).split("/").pop());if(!files.length)return null;
  const L=await Promise.all([...new Set(files)].map(f=>fetch("properties/"+encodeURIComponent(f),{cache:"no-store"}).then(r=>r.json()).catch(()=>null)));
  const ok=L.filter(Boolean);return ok.length?ok:null}catch(e){return null}}
+// GitHub Pages has no folder listing, so ask the GitHub API which files are in properties/
+async function loadGithub(){const C=(typeof CONFIG!="undefined"&&CONFIG)||{},h=location.hostname;if(!C.repo&&!h.endsWith(".github.io"))return null;
+ const owner=h.split(".")[0];let segs=location.pathname.split("/").filter(Boolean);if(segs.length&&segs[segs.length-1].includes("."))segs.pop();
+ const cands=[];if(C.repo)cands.push([C.repo,C.folder||""]);
+ if(segs.length)cands.push([owner+"/"+segs[0],segs.slice(1).join("/")]);cands.push([owner+"/"+owner+".github.io",segs.join("/")]);
+ for(const[repo,dir]of cands){try{const r=await fetch(`https://api.github.com/repos/${repo}/contents/${dir?dir+"/":""}properties`,{cache:"no-store"});if(!r.ok)continue;
+  const files=(await r.json()).filter(x=>x.type=="file"&&/\.json$/i.test(x.name));if(!files.length)continue;
+  const L=await Promise.all(files.map(f=>fetch(f.download_url,{cache:"no-store"}).then(r=>r.json()).catch(()=>null)));const ok=L.filter(Boolean);if(ok.length)return ok}catch(e){}}
+ return null}
+async function loadEntities(){return (await loadLocal())||(await loadGithub())}
 function setAllow(el){if(el.classList.contains("av"))AV=el.checked;else AR=el.checked;
  document.querySelectorAll(".av").forEach(x=>x.checked=AV);document.querySelectorAll(".ar").forEach(x=>x.checked=AR);V=null;SU=null;
  if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else suNew()}
@@ -221,5 +232,5 @@ const sdend=e=>{if(!sdrag)return;const d=sdrag;sdrag=null;d.el.remove();const b=
 document.addEventListener("pointerup",sdend);document.addEventListener("pointercancel",sdend);
 (async()=>{const L=await loadEntities();
  if(L){ingest(L);$("note").hidden=true}
- else{ingest(BUNDLE);$("note").hidden=false;$("note").textContent="Offline mode: using the built-in entity list. To load new entities from the properties folder, run serve.py and use the address it opens."}
+ else{ingest(BUNDLE);$("note").hidden=false;$("note").textContent="Offline mode: using the built-in entity list. New .json files in the properties folder are only picked up when the game runs from serve.py or from GitHub Pages (GitHub may also have rate-limited the request; try again in a bit)."}
  nw()})();</script></body></html>
