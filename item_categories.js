@@ -5,6 +5,7 @@ const ITEM_CATEGORIES = [
   { key: "light_source", label: "light source", difficulty: "easy" },
   { key: "food", label: "Healing/Foods", difficulty: "easy" },
   { key: "key", label: "key", difficulty: "easy" },
+  { key: "containers", label: "Containers", difficulty: "easy"},
   { key: "utility", label: "Utility", difficulty: "easy" },
   { key: "essential", label: "Essentials", difficulty: "easy" },
   { key: "currencies", label: "Currencies", difficulty: "easy" },
