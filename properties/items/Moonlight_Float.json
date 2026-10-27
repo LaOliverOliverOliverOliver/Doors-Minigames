@@ -19,4 +19,5 @@
  "sold_in_pre_run_shop": false,
  "uses_battery": false,
  "minor_item": false,
+ "entity_related": true
 }
