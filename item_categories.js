@@ -22,4 +22,5 @@ const ITEM_CATEGORIES = [
   { key: "sold_in_pre_run_shop", label: "sold in pre-run shop", difficulty: "hard" },
   { key: "uses_battery", label: "uses battery", difficulty: "hard" },
   { key: "minor_item", label: "Minor item", difficulty: "hard" },
+  { key: "entity_related", label: "Entity Related", difficulty: "hard" },
 ];
