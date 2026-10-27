@@ -17,7 +17,7 @@
  "appears_in_outdoors": true,
  "appears_in_archives": true,
  "appears_in_stairwell": true,
- "sold_in_pre_run_shop": true,
+ "sold_in_pre_run_shop": false,
  "uses_battery": false,
  "minor_item": false
 }
