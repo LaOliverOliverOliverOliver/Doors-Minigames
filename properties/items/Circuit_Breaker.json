@@ -1,6 +1,6 @@
 {
  "name": "Circuit Breaker",
- "image": "images/items/Break_Pole.png",
+ "image": "images/items/Breaker_Pole.png",
  "light_source": false,
  "food": false,
  "key": false,
