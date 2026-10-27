@@ -1,0 +1,22 @@
+{
+ "name": "Scanner",
+ "image": "images/items/Scanner.png",
+ "light_source": false,
+ "food": false,
+ "key": false,
+ "utility": true,
+ "essential": false,
+ "currencies": false,
+ "salvage": false,
+ "drives": false,
+ "miscellaneous": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "appears_in_backdoor": false,
+ "appears_in_outdoors": false,
+ "appears_in_archives": false,
+ "appears_in_stairwell": true,
+ "sold_in_pre_run_shop": false,
+ "uses_battery": true,
+ "minor_item": false
+}
