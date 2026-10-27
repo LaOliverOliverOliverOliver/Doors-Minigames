@@ -1,1 +1,0 @@
-One PNG per entity, named like the 'image' field in its properties file (e.g. Starlight.png). download_images.py tries to fetch them.
