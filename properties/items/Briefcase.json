@@ -1,0 +1,23 @@
+{
+ "name": "Briefcase",
+ "image": "images/items/Briefcase.png",
+ "light_source": false,
+ "food": false,
+ "key": false,
+ "containers": true,
+ "utility": false,
+ "essential": false,
+ "currencies": false,
+ "salvage": false,
+ "drives": false,
+ "miscellaneous": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "appears_in_backdoor": false,
+ "appears_in_outdoors": false,
+ "appears_in_archives": true,
+ "appears_in_stairwell": false,
+ "sold_in_pre_run_shop": false,
+ "uses_battery": false,
+ "minor_item": false
+}
