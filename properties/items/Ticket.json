@@ -4,7 +4,7 @@
  "light_source": false,
  "food": false,
  "key": false,
- "containers": true,
+ "containers": false,
  "utility": false,
  "essential": true,
  "currencies": false,
