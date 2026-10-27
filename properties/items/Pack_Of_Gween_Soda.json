@@ -1,0 +1,23 @@
+{
+ "name": "Pack of Gween Soda",
+ "image": "images/items/Pack_of_Gween_Soda.png",
+ "light_source": false,
+ "food": false,
+ "key": false,
+ "containers": false,
+ "utility": false,
+ "essential": false,
+ "currencies": false,
+ "salvage": true,
+ "drives": false,
+ "miscellaneous": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "appears_in_backdoor": false,
+ "appears_in_outdoors": false,
+ "appears_in_archives": false,
+ "appears_in_stairwell": true,
+ "sold_in_pre_run_shop": false,
+ "uses_battery": false,
+ "minor_item": false
+}
