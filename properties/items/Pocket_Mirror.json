@@ -1,0 +1,22 @@
+{
+ "name": "Pocket Mirror",
+ "image": "images/items/Pocket_Mirror.png",
+ "light_source": false,
+ "food": false,
+ "key": false,
+ "utility": true,
+ "essential": false,
+ "currencies": false,
+ "salvage": false,
+ "drives": false,
+ "miscellaneous": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "appears_in_backdoor": false,
+ "appears_in_outdoors": false,
+ "appears_in_archives": false,
+ "appears_in_stairwell": false,
+ "sold_in_pre_run_shop": false,
+ "uses_battery": false,
+ "minor_item": false
+}
