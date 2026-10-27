@@ -23,4 +23,5 @@ const ITEM_CATEGORIES = [
   { key: "uses_battery", label: "uses battery", difficulty: "hard" },
   { key: "minor_item", label: "Minor item", difficulty: "hard" },
   { key: "entity_related", label: "Entity Related", difficulty: "hard" },
+  { key: "limited_uses", label: "Limited Uses", difficulty: "hard" },
 ];
