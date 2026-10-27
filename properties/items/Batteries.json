@@ -1,6 +1,6 @@
 {
  "name": "Batteries",
- "image": "images/items/Batteries.png",
+ "image": "images/items/Battery.png",
  "light_source": false,
  "food": false,
  "key": false,
