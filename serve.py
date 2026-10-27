@@ -1,6 +1,10 @@
 import http.server, socketserver, os, threading, webbrowser
 # Run with: python serve.py   (then the game loads every .json in the properties folder)
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+try:
+    import build_bundle; print('bundle.js refreshed:', build_bundle.main())
+except Exception as e:
+    print('could not refresh bundle.js:', e)
 class H(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Cache-Control", "no-store"); super().end_headers()
