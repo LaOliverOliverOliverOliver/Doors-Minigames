@@ -1,6 +1,6 @@
 {
  "name": "Barrel of Starlight",
- "image": "images/items/Barrel_of_Starlight.png",
+ "image": "images/items/Starlight_Jug.png",
  "light_source": false,
  "food": true,
  "key": false,
