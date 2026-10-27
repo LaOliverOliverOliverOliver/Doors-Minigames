@@ -1,6 +1,6 @@
 {
- "name": "Briefcase",
- "image": "images/items/Briefcase.png",
+ "name": "Storage Box",
+ "image": "images/items/Storage_Box.png",
  "light_source": false,
  "food": false,
  "key": false,
