@@ -1,6 +1,6 @@
 {
  "name": "Vitamins",
- "image": "images/items/Vitamin.png",
+ "image": "images/items/Vitamins.png",
  "light_source": false,
  "food": true,
  "key": false,
