@@ -1,0 +1,15 @@
+{
+ "name": "Candle",
+ "image": "images/items/Candle.png",
+ "light_source": true,
+ "edible": false,
+ "key": false,
+ "appears_in_hotel": true,
+ "appears_in_mines": false,
+ "sold_in_shop": true,
+ "consumable": false,
+ "magical": false,
+ "uses_battery": false,
+ "puzzle_item": false,
+ "appears_in_the_rooms": false
+}

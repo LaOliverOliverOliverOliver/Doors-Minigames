@@ -1,0 +1,15 @@
+{
+ "name": "Laser Pointer",
+ "image": "images/items/Laser_Pointer.png",
+ "light_source": true,
+ "edible": false,
+ "key": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": true,
+ "sold_in_shop": false,
+ "consumable": false,
+ "magical": false,
+ "uses_battery": true,
+ "puzzle_item": false,
+ "appears_in_the_rooms": false
+}

@@ -1,0 +1,15 @@
+{
+ "name": "Barrel of Starlight",
+ "image": "images/items/Barrel_of_Starlight.png",
+ "light_source": false,
+ "edible": false,
+ "key": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "sold_in_shop": false,
+ "consumable": false,
+ "magical": true,
+ "uses_battery": false,
+ "puzzle_item": false,
+ "appears_in_the_rooms": true
+}
