@@ -1,0 +1,23 @@
+{
+ "name": "Scanner Module Translator",
+ "image": "images/items/Scanner_Modue_Translator.png",
+ "light_source": false,
+ "food": false,
+ "key": false,
+ "containers": false,
+ "utility": false,
+ "essential": false,
+ "currencies": false,
+ "salvage": false,
+ "drives": true,
+ "miscellaneous": false,
+ "appears_in_hotel": false,
+ "appears_in_mines": false,
+ "appears_in_backdoor": false,
+ "appears_in_outdoors": false,
+ "appears_in_archives": false,
+ "appears_in_stairwell": true,
+ "sold_in_pre_run_shop": false,
+ "uses_battery": false,
+ "minor_item": false
+}
