@@ -1,6 +1,6 @@
 {
  "name": "Library Book",
- "image": "images/items/Library_Book.png",
+ "image": "images/items/Book.png",
  "light_source": false,
  "food": false,
  "key": false,
