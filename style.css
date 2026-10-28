@@ -111,3 +111,22 @@ button.b:disabled{opacity:.35;cursor:default;transform:none}
 .note{max-width:760px;margin:10px auto 0;padding:8px 12px;border-radius:10px;background:rgba(242,193,78,.12);border:1px solid rgba(242,193,78,.4);font-size:13px}
 .sections{display:flex;gap:10px;justify-content:center;margin:12px 0 4px}.sections .b{font-size:18px;padding:12px 34px}
 body.items .ent-only{display:none!important}
+
+/* Name them all */
+#nmode[hidden]{display:none}
+.nbox{max-width:560px;margin:14px auto 6px;display:flex;flex-direction:column;align-items:center;gap:6px}
+#nin{width:100%;font-size:22px;padding:14px 18px;border-radius:14px;border:2px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink);text-align:center;outline:none;transition:border-color .15s,box-shadow .15s}
+#nin:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(242,193,78,.2)}#nin:disabled{opacity:.5}
+#nin.shake{animation:shake .4s;border-color:#d05a5a}
+#nfb{min-height:24px;font-weight:600}#nfb.ok{color:#7bc47f}#nfb.warn{color:var(--gold)}#nfb.bad{color:#d05a5a}
+#nlist{max-width:1240px;margin:14px auto 0;text-align:left}
+.ngrp{margin-bottom:18px}.ngrp h3{margin:0 0 8px;font-size:17px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.ngrp .cnt{font-size:13px;opacity:.7;font-weight:600}
+.nchips{display:flex;flex-wrap:wrap;gap:8px}
+.nc{position:relative;width:92px;height:104px;border:2px solid #5a4430;border-radius:12px;background:linear-gradient(160deg,#3b2d21,#2a2018);overflow:hidden;flex:none}
+.nc img{position:absolute;left:5px;top:4px;width:calc(100% - 10px);height:calc(100% - 34px);object-fit:contain}
+.nc .n{position:absolute;left:0;right:0;bottom:0;padding:3px;background:rgba(0,0,0,.55);font-size:11.5px;line-height:1.1;text-align:center}
+.nc.noimg .n{top:0;display:flex;align-items:center;justify-content:center;background:none;font-weight:600;font-size:13px}
+.nc.new{animation:pop .4s;border-color:#7bc47f}
+.nc.ph{border-style:dashed;background:transparent;opacity:.4;display:flex;align-items:center;justify-content:center;font-size:22px}
+.nc.miss{border-color:#c06060}.nc.miss .n{background:rgba(120,30,30,.65)}.nc.miss.noimg .n{background:none}

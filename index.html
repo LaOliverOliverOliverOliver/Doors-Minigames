@@ -5,10 +5,11 @@
 <script src="config.js"></script>
 <script src="categories.js"></script>
 <script src="item_categories.js"></script>
+<script src="places.js"></script>
 <script src="bundle.js"></script></head><body><div id="bg"></div>
 <div class="wrap" id="wrap"><h1>DOORS: Minigames</h1><p class="sub">Pick a minigame below.</p><div id="note" class="note" hidden></div>
 <div class="sections"><button class="b" id="sec-entities" onclick="setSection('entities')">Entities</button><button class="b ghost" id="sec-items" onclick="setSection('items')">Items</button></div>
-<div class="tabs"><button class="b" id="tg" onclick="mode('g')">Groups</button><button class="b ghost" id="tv" onclick="mode('v')">Venn diagram</button><button class="b ghost ent-only" id="ts" onclick="mode('s')">Size up</button></div>
+<div class="tabs"><button class="b" id="tg" onclick="mode('g')">Groups</button><button class="b ghost" id="tv" onclick="mode('v')">Venn diagram</button><button class="b ghost ent-only" id="ts" onclick="mode('s')">Size up</button><button class="b ghost" id="tn" onclick="mode('n')">Name them all</button></div>
 <div id="gmode"><div class="bar"><div class="pill">Difficulty <select id="df" onchange="nw()"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="any" selected>Any</option></select></div><div class="pill">Grid <select id="sz" onchange="nw()"><option value="3">3x3</option><option value="4" selected>4x4</option><option value="5">5x5</option><option value="6">6x6</option></select></div>
 <label class="pill"><input type="checkbox" id="ov" checked onchange="nw()"> Allow overlap</label><label class="pill ent-only"><input type="checkbox" class="av" checked onchange="setAllow(this)"> Allow visions</label><label class="pill ent-only"><input type="checkbox" class="ar" checked onchange="setAllow(this)"> Allow reskins</label><div class="pill" id="lives"></div></div>
 <div id="board"><div id="solved"></div><div class="grid" id="g"></div></div><div id="m"></div>
@@ -25,7 +26,12 @@
 <div id="suboard"><div id="sutiles"></div><div class="axis"><span>◀ Smallest</span><span>Biggest ▶</span></div></div>
 <div id="suscale"><div class="sub" style="margin-bottom:8px">True scale, smallest to biggest. Scroll sideways or use Zoom to look closer.</div><div id="scw"><div id="scin"></div></div><div class="btns" style="margin-top:8px"><button class="b ghost" onclick="suzoom(1/1.4)">Zoom −</button><button class="b ghost" onclick="suzoom(1.4)">Zoom +</button><button class="b ghost" onclick="suzoom(0)">Fit</button></div></div>
 <div id="sum"></div>
-<div class="btns"><button class="b" id="sucb" onclick="sucheck()">Check</button><button class="b ghost" onclick="sugive()">Give up</button><button class="b ghost" onclick="suNew()">New round</button></div></div></div>
+<div class="btns"><button class="b" id="sucb" onclick="sucheck()">Check</button><button class="b ghost" onclick="sugive()">Give up</button><button class="b ghost" onclick="suNew()">New round</button></div></div>
+<div id="nmode" hidden>
+<div class="bar"><label class="pill ent-only"><input type="checkbox" class="av" checked onchange="setAllow(this)"> Allow visions</label><label class="pill ent-only"><input type="checkbox" class="ar" checked onchange="setAllow(this)"> Allow reskins</label><label class="pill"><input type="checkbox" id="ngrp" checked onchange="nRender()"> Group by floor</label><div class="pill" id="nstat"></div><div class="pill" id="ntime">0:00</div></div>
+<div class="nbox"><input id="nin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" oninput="nType()" onkeydown="if(event.key==='Enter')nSubmit()"><div id="nfb"></div></div>
+<div id="nlist"></div>
+<div class="btns"><button class="b ghost" onclick="nGive()">Give up</button><button class="b ghost" onclick="nNew()">Restart</button></div></div></div>
 <div id="corner"><button class="b ghost ent-only" onclick="hvOpen()">📏 View heights</button><button class="b ghost" id="allb" onclick="allOpen()">📖 All entities</button></div>
 <div id="hvm" hidden onclick="if(event.target==this)hvClose()"><div class="pn"><div class="hd"><h2>Entity heights</h2>
 <select id="hvs" class="b ghost" onchange="hvRender(false)" style="color:var(--ink);background:#2a2018"><option value="hu">Height: small → big</option><option value="hd">Height: big → small</option><option value="na">Name: A → Z</option><option value="nd">Name: Z → A</option></select>
@@ -36,18 +42,18 @@
 <div id="allm" hidden onclick="if(event.target==this)allClose()"><div class="pn"><div class="hd"><h2 id="allh">All entities</h2><button class="b ghost" onclick="allClose()">Close ✕</button></div><div class="ls" id="alll"></div></div></div>
 <script>
 const BUNDLE_=(typeof BUNDLE!="undefined")?BUNDLE:{entities:[],items:[]};
-let P={},N=[],IMG={},CATLIST=[],AV=true,AR=true,SEC="entities",TIER={easy:[],medium:[],hard:[]},LABEL={};
+let RAW={},P={},N=[],IMG={},CATLIST=[],AV=true,AR=true,SEC="entities",TIER={easy:[],medium:[],hard:[]},LABEL={};
 const DS={};
 const ents=()=>N.filter(n=>(AV||!P[n].appears_in_visions)&&(AR||!P[n].reskins));
 const IMGP=n=>IMG[n]||`images/${SEC}/${F(n)}.png`;
 function catsFor(sec){const c=sec=="items"?(typeof ITEM_CATEGORIES!="undefined"?ITEM_CATEGORIES:null):(typeof CATEGORIES!="undefined"?CATEGORIES:null);
  if(c&&c.length)return c;const b=(BUNDLE_[sec]||[])[0]||{};return Object.keys(b).filter(k=>typeof b[k]=="boolean").map(k=>({key:k}))}
-function build(sec,list){const cats=catsFor(sec),ds={P:{},IMG:{},TIER:{easy:[],medium:[],hard:[]},CATLIST:cats.map(c=>c.key)};
+function build(sec,list){const cats=catsFor(sec),ds={P:{},RAW:{},IMG:{},TIER:{easy:[],medium:[],hard:[]},CATLIST:cats.map(c=>c.key)};
  cats.forEach(c=>{if(ds.TIER[c.difficulty])ds.TIER[c.difficulty].push(c.key)});
  ds.LABEL=Object.fromEntries(cats.map(c=>[c.key,c.label||c.key.replace(/_/g," ")]));
- list.forEach(o=>{if(!o||!o.name)return;const p={};ds.CATLIST.forEach(k=>p[k]=o[k]===true);ds.P[o.name]=p;if(o.image)ds.IMG[o.name]=o.image});
+ list.forEach(o=>{if(!o||!o.name)return;const p={};ds.CATLIST.forEach(k=>p[k]=o[k]===true);ds.P[o.name]=p;ds.RAW[o.name]=o;if(o.image)ds.IMG[o.name]=o.image});
  ds.N=Object.keys(ds.P);return ds}
-function useDS(ds){P=ds.P;N=ds.N;IMG=ds.IMG;CATLIST=ds.CATLIST;TIER=ds.TIER;LABEL=ds.LABEL}
+function useDS(ds){RAW=ds.RAW;P=ds.P;N=ds.N;IMG=ds.IMG;CATLIST=ds.CATLIST;TIER=ds.TIER;LABEL=ds.LABEL}
 async function loadLocal(sec){try{const r=await fetch(`properties/${sec}/`,{cache:"no-store"});if(!r.ok)return null;
  const files=[...(await r.text()).matchAll(/href="([^"?#]+\.json)"/gi)].map(m=>decodeURIComponent(m[1]).split("/").pop());if(!files.length)return null;
  const L=await Promise.all([...new Set(files)].map(f=>fetch(`properties/${sec}/`+encodeURIComponent(f),{cache:"no-store"}).then(r=>r.json()).catch(()=>null)));
@@ -71,11 +77,11 @@ async function setSection(sec){if(!DS[sec])DS[sec]=await loadSection(sec);SEC=se
  $("vintro").textContent=`Drag each ${w[0]} onto the small circle for the region it belongs to (or tap one, then tap a circle). Circles where the big ones overlap are for ${w[1]} that fit several categories. Each circle takes exactly one ${w[0]}, and the "None" box is for the one that fits none of the three.`;
  const nt=$("note");nt.hidden=DS[sec].live;
  if(!DS[sec].live)nt.textContent=`Offline mode: showing the built-in ${w[1]} list. New .json files in properties/${sec}/ are only picked up when the game runs from serve.py or from GitHub Pages.`;
- V=null;SU=null;if(sec=="items"&&!$("smode").hidden)mode("g");
- if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else suNew()}
+ V=null;SU=null;NM=null;if(sec=="items"&&!$("smode").hidden)mode("g");
+ if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else if(!$("nmode").hidden)nNew();else suNew()}
 function setAllow(el){if(el.classList.contains("av"))AV=el.checked;else AR=el.checked;
- document.querySelectorAll(".av").forEach(x=>x.checked=AV);document.querySelectorAll(".ar").forEach(x=>x.checked=AR);V=null;SU=null;
- if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else suNew()}
+ document.querySelectorAll(".av").forEach(x=>x.checked=AV);document.querySelectorAll(".ar").forEach(x=>x.checked=AR);V=null;SU=null;NM=null;
+ if(!$("gmode").hidden)nw();else if(!$("vmode").hidden)vnew();else if(!$("nmode").hidden)nNew();else suNew()}
 const COL=["#f2c14e","#7bc47f","#6ea8e6","#b58ae0","#ef9a5b","#5fc9c0"];
 const L=c=>LABEL[c]||c.replace(/_/g," ");
 const F=n=>n.replace(/[^A-Za-z0-9-]+/g,"_").replace(/^_+|_+$/g,"");
@@ -139,8 +145,8 @@ const vmask=(x,y)=>CIR.reduce((m,c,i)=>m|(((x-c.x)**2+(y-c.y)**2<=c.r*c.r)?1<<i:
 const rname=m=>m?V.cs.filter((c,i)=>m>>i&1).map(L).join(" + "):"none of the three";
 const zst=z=>z.id==0?`left:${20/W*100}%;top:${690/H*100}%;width:${220/W*100}%;height:${150/H*100}%`:`left:${(z.x-ZR)/W*100}%;top:${(z.y-ZR)/H*100}%;width:${2*ZR/W*100}%;height:${2*ZR/H*100}%`;
 const lines=s=>{if(s.length<=22)return[s];const m=s.length/2;let b=-1;for(let i=0;i<s.length;i++)if(s[i]==" "&&(b<0||Math.abs(i-m)<Math.abs(b-m)))b=i;return[s.slice(0,b),s.slice(b+1)]};
-function mode(m){if(SEC=="items"&&m=="s")m="g";const ids={g:"gmode",v:"vmode",s:"smode"},tabs={g:"tg",v:"tv",s:"ts"};for(const k in ids){$(ids[k]).hidden=k!=m;$(tabs[k]).classList.toggle("ghost",k!=m)}
- $("wrap").classList.toggle("wide",m!="g");if(m=="v"&&!V)vnew();if(m=="s"&&!SU)suNew()}
+function mode(m){if(SEC=="items"&&m=="s")m="g";const ids={g:"gmode",v:"vmode",s:"smode",n:"nmode"},tabs={g:"tg",v:"tv",s:"ts",n:"tn"};for(const k in ids){$(ids[k]).hidden=k!=m;$(tabs[k]).classList.toggle("ghost",k!=m)}
+ $("wrap").classList.toggle("wide",m!="g");if(m=="v"&&!V)vnew();if(m=="s"&&!SU)suNew();if(m=="n"){if(!NM)nNew();$("nin").focus()}}
 function vmsg(t){const m=$("vm");m.textContent=t;m.classList.remove("in");void m.offsetWidth;m.classList.add("in")}
 function vnew(){const df=$("vdf").value,C=CATLIST.filter(c=>df=="any"||TIER[df].includes(c));document.querySelectorAll(".cf").forEach(e=>e.remove());
  let best=null,bs=-1;
@@ -250,4 +256,41 @@ const sdend=e=>{if(!sdrag)return;const d=sdrag;sdrag=null;d.el.remove();const b=
  else{const t=tileAt(e);if(t&&t.dataset.n!=d.n)smoveTo(d.n,SU.order.indexOf(t.dataset.n));SU.sel=null}
  SU.marks={};surender(b)};
 document.addEventListener("pointerup",sdend);document.addEventListener("pointercancel",sdend);
+// ---------- Name them all ----------
+const normName=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/^the\s+/,"").replace(/[^a-z0-9]/g,"");
+let NM=null,ntimer=null,nauto=null;
+const PL=()=>(typeof PLACES!="undefined"&&PLACES[SEC])||[];
+const placesOf=n=>{const o=RAW[n]||{};return PL().map((p,i)=>o[p.key]===true?i:-1).filter(i=>i>=0)};
+function nFb(t,c){const e=$("nfb");e.textContent=t;e.className=c||""}
+function nNew(){clearInterval(ntimer);clearTimeout(nauto);const pool=ents(),keys=new Map();pool.forEach(n=>keys.set(normName(n),n));
+ NM={pool,keys,found:[],set:new Set(),start:0,done:false,gave:false,last:null};
+ const inp=$("nin");inp.value="";inp.disabled=false;inp.placeholder=`Type ${SEC=="items"?"an item":"an entity"} name…`;nFb("");$("ntime").textContent="0:00";nRender();inp.focus()}
+function nFind(t){if(!t)return null;const k=NM.keys;if(k.has(t))return k.get(t);if(t.endsWith("s")&&k.has(t.slice(0,-1)))return k.get(t.slice(0,-1));if(k.has(t+"s"))return k.get(t+"s");return null}
+function nType(){if(!NM||NM.done)return;clearTimeout(nauto);$("nin").classList.remove("shake");const t=normName($("nin").value);if(!t){nFb("");return}
+ const n=nFind(t);if(!n){nFb("");return}
+ if(NM.set.has(n)){nFb("Already in the list","warn");return}
+ // if a longer, not yet found name starts with what was typed (Jeff / Jeff the Killer), wait a moment before adding
+ const amb=[...NM.keys].some(([k,nn])=>nn!==n&&!NM.set.has(nn)&&k.startsWith(t));
+ if(!amb)nAdd(n);else nauto=setTimeout(()=>{if(NM&&!NM.done&&normName($("nin").value)==t&&!NM.set.has(n))nAdd(n)},900)}
+function nSubmit(){if(!NM||NM.done)return;clearTimeout(nauto);const t=normName($("nin").value);if(!t)return;const n=nFind(t);
+ if(!n){nFb("Not in the list","bad");const i=$("nin");i.classList.remove("shake");void i.offsetWidth;i.classList.add("shake");return}
+ if(NM.set.has(n)){nFb("Already in the list","warn");return}nAdd(n)}
+function nAdd(n){clearTimeout(nauto);if(!NM.start){NM.start=Date.now();ntimer=setInterval(nTick,500)}
+ NM.found.push(n);NM.set.add(n);NM.last=n;$("nin").value="";nFb("✓ "+n,"ok");nRender();if(NM.found.length==NM.pool.length)nEnd(false)}
+function nTick(){if(!NM||!NM.start)return;const s=Math.floor((Date.now()-NM.start)/1000);$("ntime").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function nEnd(gave){NM.done=true;NM.gave=gave;clearInterval(ntimer);nTick();clearTimeout(nauto);$("nin").disabled=true;
+ nFb(gave?`Gave up with ${NM.found.length} of ${NM.pool.length}. Missed ones are in red.`:"🎉 You named them all!",gave?"warn":"ok");nRender();if(!gave)confetti()}
+function nGive(){if(NM&&!NM.done)nEnd(true)}
+function nRender(){if(!NM)return;const grp=$("ngrp").checked,pl=PL(),last=NM.last;NM.last=null;
+ const chip=(n,c)=>`<div class="nc ${c||""}" data-n="${n}"><img src="${IMGP(n)}" alt="" onerror="this.parentNode.classList.add('noimg');this.remove()"><span class="n">${n}</span></div>`;
+ const fc=n=>chip(n,n===last?"new":"");
+ let html="";
+ if(grp){const G=new Map();NM.pool.forEach(n=>{const ps=placesOf(n),k=ps.join(",");if(!G.has(k))G.set(k,{ps,names:[]});G.get(k).names.push(n)});
+  const gs=[...G.values()].sort((a,b)=>{if(!a.ps.length)return 1;if(!b.ps.length)return -1;for(let i=0;i<Math.max(a.ps.length,b.ps.length);i++){const x=a.ps[i]??-1,y=b.ps[i]??-1;if(x!=y)return x-y}return 0});
+  html=gs.map(g=>{const label=g.ps.length?g.ps.map(i=>pl[i].name).join(", "):(typeof NO_PLACE!="undefined"?NO_PLACE:"No native");
+   const found=NM.found.filter(n=>g.names.includes(n)),rest=g.names.filter(n=>!NM.set.has(n)).sort((a,b)=>a.localeCompare(b));
+   return `<section class="ngrp"><h3>${label}<span class="cnt">${found.length}/${g.names.length}</span></h3><div class="nchips">${found.map(fc).join("")}${NM.gave?rest.map(n=>chip(n,"miss")).join(""):rest.map(()=>'<div class="nc ph">?</div>').join("")}</div></section>`}).join("")}
+ else{const rest=NM.pool.filter(n=>!NM.set.has(n)).sort((a,b)=>a.localeCompare(b));
+  html=`<section class="ngrp"><div class="nchips">${NM.found.map(fc).join("")}${NM.gave?rest.map(n=>chip(n,"miss")).join(""):""}</div></section>`}
+ $("nlist").innerHTML=html;$("nstat").textContent=`Found ${NM.found.length}/${NM.pool.length}`}
 (async()=>{await setSection("entities")})();</script></body></html>
